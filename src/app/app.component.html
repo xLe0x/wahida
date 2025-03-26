@@ -6,12 +6,21 @@
   </div>
 </header> -->
 
-<main class="min-h-screen grid place-content-center relative overflow-hidden">
+<main
+  class="min-h-screen flex flex-col items-center justify-center sm:grid sm:place-content-center relative overflow-hidden"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
   <div
     class="transition-all ease-linear duration-500 grid place-self-center transform-gpu absolute inset-0 -top-16 bg-gradient-to-b -z-10"
-    [attr.style]="gradientStyle"
+    [attr.style]="gradientStyle()"
     [ngClass]="{
-      'w-32 h-32 rounded-[100%] scale-100': !isDoingTask(),
+      'w-32 h-32 rounded sm:rounded-[100%] scale-100': !isDoingTask(),
       'w-screen h-screen rounded-[0%] scale-[4]': isDoingTask()
     }"
   ></div>
@@ -34,12 +43,13 @@
     </form>
   </div>
   } @else {
-  <div class="container mx-auto px-4">
-    <div class="mb-8 grid gap-4">
-      <p class="text-2xl rounded p-4 w-fit bg-base-100">
+
+  <div class="container mx-auto px-4 min-h-screen flex flex-col justify-center">
+    <div class="mb-8 grid place-content-start">
+      <p class="text-3xl font-black rounded">
         {{ formatTime(timer()) }}
       </p>
-      <h1 class="text-4xl font-bold leading-tight">{{ task.value }}</h1>
+      <h1 class="text-5xl font-bold leading-tight">{{ task.value }}</h1>
     </div>
     <button class="btn btn-primary btn-block" (click)="stopTask()">
       إنجاز
