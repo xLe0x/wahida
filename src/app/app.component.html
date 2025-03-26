@@ -1,0 +1,47 @@
+<!-- <header class="mb-8">
+  <div class="navbar bg-base-100">
+    <div class="navbar-start"></div>
+    <div class="navbar-center"></div>
+    <div class="navbar-end"></div>
+  </div>
+</header> -->
+
+<main class="min-h-screen grid place-content-center relative overflow-hidden">
+  <div
+    class="transition-all ease-linear duration-500 grid place-self-center transform-gpu absolute inset-0 -top-16 bg-gradient-to-b -z-10"
+    [attr.style]="gradientStyle"
+    [ngClass]="{
+      'w-32 h-32 rounded-[100%] scale-100': !isDoingTask(),
+      'w-screen h-screen rounded-[0%] scale-[4]': isDoingTask()
+    }"
+  ></div>
+
+  <div class="container mx-auto grid gap-12">
+    @if(!isDoingTask()) {
+    <h1 class="text-4xl font-bold">مهمة واحدة في وقت واحد!</h1>
+    <form
+      class="flex flex-col gap-4 w-full"
+      [formGroup]="form"
+      (ngSubmit)="addTask()"
+    >
+      <input
+        type="text"
+        class="input input-lg w-full focus-within:outline-transparent"
+        placeholder="أدخل مهمتك"
+        formControlName="task"
+      />
+      <button class="btn btn-primary" [disabled]="form.invalid">إبدأ</button>
+    </form>
+    } @else {
+    <div class="flex flex-col items-center justify-center gap-8">
+      <h1 class="text-6xl font-bold">{{ task.value }}</h1>
+      <p class="text-4xl font-semibold text-center">
+        {{ formatTime(timer()) }}
+      </p>
+      <button class="btn btn-accent btn-block" (click)="stopTask()">
+        إنجاز
+      </button>
+    </div>
+    }
+  </div>
+</main>
