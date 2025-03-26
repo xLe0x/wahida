@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, viewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -44,9 +44,18 @@ export class AppComponent {
       this.intervalId = null;
     }
     this.task.setValue('');
+    this.playSound();
     this.celebrate();
     this.timer.set(0);
   }
+
+  playSound() {
+    let audio = new Audio();
+    audio.src = '/goodresult-82807.mp3';
+    audio.load();
+    audio.play();
+  }
+
   formatTime(seconds: number): string {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
