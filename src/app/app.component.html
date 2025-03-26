@@ -16,9 +16,9 @@
     }"
   ></div>
 
-  <div class="container mx-auto grid gap-12">
-    @if(!isDoingTask()) {
-    <h1 class="text-4xl font-bold">مهمة واحدة في وقت واحد!</h1>
+  @if(!isDoingTask()) {
+  <div class="container px-4 mx-auto grid gap-12">
+    <h1 class="text-4xl font-bold text-center">مهمة واحدة في وقت واحد!</h1>
     <form
       class="flex flex-col gap-4 w-full"
       [formGroup]="form"
@@ -32,16 +32,18 @@
       />
       <button class="btn btn-primary" [disabled]="form.invalid">إبدأ</button>
     </form>
-    } @else {
-    <div class="flex flex-col items-center justify-center gap-8">
-      <h1 class="text-6xl font-bold">{{ task.value }}</h1>
-      <p class="text-4xl font-semibold text-center">
+  </div>
+  } @else {
+  <div class="container mx-auto px-4">
+    <div class="mb-8 grid gap-4">
+      <p class="text-2xl rounded p-4 w-fit bg-base-100">
         {{ formatTime(timer()) }}
       </p>
-      <button class="btn btn-accent btn-block" (click)="stopTask()">
-        إنجاز
-      </button>
+      <h1 class="text-4xl font-bold leading-tight">{{ task.value }}</h1>
     </div>
-    }
+    <button class="btn btn-primary btn-block" (click)="stopTask()">
+      إنجاز
+    </button>
   </div>
+  }
 </main>
